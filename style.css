@@ -1,0 +1,277 @@
+/* --- Root Variables & Reset --- */
+:root {
+    --bg-black: #050508;           /* Deep Obsidian */
+    --accent-purple: #a855f7;      /* Electric Purple */
+    --dim-purple: #7c3aed;         /* Shadow Purple */
+    --text-white: #ffffff;
+    --text-dim: #94a3b8;
+    --code-font: 'Courier New', Courier, monospace;
+    --main-font: 'Inter', 'Segoe UI', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    font-family: var(--main-font);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* --- Background Decoration --- */
+.purple-glow {
+    position: fixed;
+    top: -10%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, rgba(8, 8, 12, 0) 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* --- Intro Screen & Animations --- */
+#intro-screen {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-black);
+    text-align: center;
+}
+
+.greeting-layer {
+    font-size: clamp(4rem, 15vw, 10rem);
+    font-weight: 800;
+    color: var(--accent-purple);
+    text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+    animation: fadeOutUp 1.5s forwards ease-in-out;
+}
+
+@keyframes fadeOutUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    50% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-20px); visibility: hidden; }
+}
+
+/* --- Hero Content (Name & Tag) --- */
+.intro-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+}
+
+.intro-content.fadeIn {
+    animation: smoothReveal 1s ease forwards;
+}
+
+@keyframes smoothReveal {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-name {
+    font-size: clamp(2.5rem, 8vw, 5.5rem); 
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #ffffff, var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.2));
+}
+
+.tag-container {
+    margin-bottom: 25px;
+}
+
+.ctf-tag {
+    font-family: var(--code-font);
+    font-size: 1.1rem;
+    color: var(--accent-purple);
+    background: rgba(168, 85, 247, 0.08);
+    padding: 6px 16px;
+    border-radius: 4px;
+    border-left: 3px solid var(--accent-purple);
+    display: inline-block;
+    animation: pulseGlow 2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+    from { box-shadow: 0 0 5px rgba(168, 85, 247, 0.1); }
+    to { box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); }
+}
+
+.hero-subtext {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    color: var(--text-dim);
+    font-weight: 300;
+    margin-bottom: 40px;
+    max-width: 80%;
+}
+
+/* --- Buttons --- */
+#enter-btn {
+    padding: 12px 35px;
+    background: transparent;
+    color: var(--text-white);
+    border: 1px solid #333;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    border-radius: 2px;
+}
+
+#enter-btn:hover {
+    border-color: var(--accent-purple);
+    color: var(--accent-purple);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+    transform: translateY(-2px);
+}
+
+/* --- Home Page Layout --- */
+#home-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 25px;
+    text-align: left;
+    animation: fadeIn 1s ease-in;
+}
+
+.home-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--accent-purple);
+}
+
+.social-links {
+    margin: 50px 0;
+}
+
+.social-links a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.social-links i {
+    font-size: 3.5rem;
+    margin-right: 30px;
+    color: #222;
+    transition: all 0.3s ease;
+}
+
+.social-links i:hover {
+    color: var(--accent-purple);
+    filter: drop-shadow(0 0 10px var(--accent-purple));
+    transform: translateY(-5px);
+}
+
+/* --- Progress Section --- */
+#progress-section {
+    margin-top: 60px;
+}
+
+.skills-container {
+    margin-top: 30px;
+}
+
+.skill {
+    margin-bottom: 25px;
+}
+
+.skill span {
+    font-family: var(--code-font);
+    font-size: 0.9rem;
+    color: var(--text-dim);
+}
+
+.bar {
+    background: #111;
+    height: 6px;
+    border-radius: 3px;
+    margin-top: 8px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.fill {
+    background: linear-gradient(90deg, var(--dim-purple), var(--accent-purple));
+    height: 100%;
+    border-radius: 3px;
+    box-shadow: 0 0 10px var(--accent-purple);
+}
+/* --- Vertical Timeline --- */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 40px 0;
+    padding-left: 30px;
+    border-left: 2px solid #222; /* The vertical line */
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+/* The Purple Dot */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -37px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent-purple);
+    box-shadow: 0 0 10px var(--accent-purple);
+}
+
+.timeline-year {
+    font-family: var(--code-font);
+    font-size: 0.9rem;
+    color: var(--accent-purple);
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.timeline-content h4 {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    color: var(--text-white);
+}
+
+.timeline-content p {
+    color: var(--text-dim);
+    font-size: 1rem;
+    max-width: 500px;
+}
+
+/* Hover effect for the timeline cards */
+.timeline-item:hover .timeline-content {
+    transform: translateX(10px);
+    transition: 0.3s ease;
+}
+
+.timeline-item:hover::before {
+    transform: scale(1.3);
+    background: #fff;
+    box-shadow: 0 0 20px var(--accent-purple);
+}
+/* --- Utilities --- */
+.hidden {
+    display: none !important;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
